@@ -1,7 +1,7 @@
 "use client";
 
+import { BookCard } from "@/components/BookCard";
 import { api } from "@/services/api";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -23,28 +23,19 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-start p-2 gap-2">
       <h1>Home</h1>
-      <div className="grid grid-cols-5 grid-rows-2">
+      <div className="grid grid-cols-1 grid-rows-2 gap-2 gap-y-6 md:grid-cols-4 lg:grid-cols-5  ">
         {booksList.length > 0 &&
           booksList.map((book: any, index) => {
             const imgLink = book.volumeInfo.imageLinks;
             console.log("link da img: ", imgLink);
             return (
-              <div key={index}>
-                {imgLink && (
-                  <Image
-                    src={imgLink['smallThumbnail']}
-                    width={60}
-                    height={90}
-                    alt="capa do livro"
-                  />
-                )}
-                <span>Título: {book.volumeInfo.title}</span>
-                <span>Subtítulo: {book.volumeInfo.subtitle}</span>
-                <span>
-                  Autor:{" "}
-                  {book.volumeInfo.authors.map((author: string) => author)}
-                </span>
-              </div>
+              <BookCard
+                imgLink={imgLink}
+                title={book.volumeInfo.title}
+                authors={book.volumeInfo.authors}
+                pageLink="/description"
+                key={index}
+              />
             );
           })}
       </div>
