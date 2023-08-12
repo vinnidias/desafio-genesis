@@ -20,6 +20,7 @@ export default function Home() {
         const { data } = await getBooks(search, "Typescript");
 
         const items = data.items;
+
         setBooksList(items);
         setIsLoading(false);
         setInputSearch("");
@@ -31,7 +32,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-2 px-2 gap-6 md:px-20">
-      <h1 className="pt-6 text-lg font-semibold">Busca Livro</h1>
+      <h1 className="pt-6 text-lg font-semibold text-sky-300">Busca Livro</h1>
       <SearchInput
         value={inputSearch}
         onChange={(e) => setInputSearch(e.target.value)}
