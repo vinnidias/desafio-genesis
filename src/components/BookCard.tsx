@@ -28,7 +28,7 @@ export const BookCard = ({ imgLink, title, authors, pageLink }: IProps) => {
         <div className="h-24"></div>
       )}
       <span className="text-center">Título: {title}.</span>
-      <span>
+      <span className="text-center">
         Autor:{" "}
         {authors &&
           authors.length > 0 &&
