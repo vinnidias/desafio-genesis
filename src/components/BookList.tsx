@@ -1,4 +1,3 @@
-import { useBooks } from "@/hooks/useBooks";
 import { BookCard } from "./BookCard";
 import { IBookData } from "@/interfaces/IBookData";
 
