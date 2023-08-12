@@ -18,7 +18,9 @@ export const SearchInput = ({ onChange, value, handleClick }: IProps) => {
       />
       <button
         onClick={handleClick}
-        className="w-48 p-1 rounded bg-sky-300 text-white transition-all hover:bg-sky-200"
+        disabled={value ? false : true}
+        className="w-48 p-1 rounded bg-sky-300 text-white transition-all shadow-md hover:bg-sky-200"
+        style={{ cursor: value ? "pointer" : "not-allowed" }}
       >
         Pesquisar
       </button>
