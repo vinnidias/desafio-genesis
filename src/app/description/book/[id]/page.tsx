@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
+
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 import { IVolumeInfoData } from "@/interfaces/IVolumeInfoData";
-import Link from "next/link";
 
 interface IParams {
   params: { id: string };
@@ -16,7 +18,10 @@ export default async function Description({ params }: IParams) {
 
   return (
     <main className="flex flex-col justify-center items-center p-2 px-2 gap-6 md:px-20">
-      <Link href="/" className="absolute top-0 left-0 m-4"> Voltar</Link>
+      <Link href="/" className="absolute top-0 left-0 m-4 text-sky-300 text-[18px]">
+        {" "}
+        <IoMdArrowRoundBack />
+      </Link>
       <h1 className="pt-6 text-lg font-semibold text-sky-300">Detalhes</h1>
       {bookData.imageLinks ? (
         <Image
