@@ -6,38 +6,39 @@ import { IBookData } from "@/interfaces/IBookData";
 import { getBooks } from "@/services/getBooks";
 
 import { useEffect, useState } from "react";
+import { useDebounce } from "use-debounce";
 
 export default function Home() {
   const [booksList, setBooksList] = useState<IBookData[]>([]);
+
   const [search, setSearch] = useState("");
-  const [inputSearch, setInputSearch] = useState("");
+  const [value] = useDebounce(search, 600);
+
   const [isLoading, setIsLoading] = useState(false);
+  const initialSearch = "Typescript";
 
   useEffect(() => {
     (async () => {
       try {
         setIsLoading(true);
-        const { data } = await getBooks(search, "Typescript");
+        const { data } = await getBooks(value || initialSearch);
 
         const items = data.items;
 
         setBooksList(items);
         setIsLoading(false);
-        setInputSearch("");
       } catch (error) {
         console.log("fail: ", error);
       }
     })();
-  }, [search]);
+  }, [value]);
 
   return (
     <main className="flex min-h-screen flex-col items-center p-2 px-2 gap-6 md:px-20">
-      <h1 className="pt-6 text-lg font-semibold text-sky-300">Busca Livro</h1>
-      <SearchInput
-        value={inputSearch}
-        onChange={(e) => setInputSearch(e.target.value)}
-        handleClick={() => setSearch(inputSearch)}
-      />
+      <h1 className="pt-6 text-lg font-semibold text-sky-300">
+        Livraria online
+      </h1>
+      <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
       {isLoading ? <p>Carregando...</p> : <BookList booksList={booksList} />}
     </main>
   );
