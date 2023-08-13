@@ -1,4 +1,4 @@
-# Desafio NextJS Genesis.
+# Desafio NextJS Genesis Bank.
 
 Projeto criado com NextJS 13 para integração com a API Google Books. <br>
 
